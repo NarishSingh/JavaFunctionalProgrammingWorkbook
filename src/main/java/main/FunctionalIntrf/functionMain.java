@@ -1,5 +1,6 @@
 package main.FunctionalIntrf;
 
+import java.util.function.BiFunction;
 import java.util.function.Function;
 
 public class functionMain {
@@ -14,5 +15,10 @@ public class functionMain {
 
         Integer multipliedAfterIncr = increment.andThen(multiplyBy10).apply(1); //chained
         System.out.println(multipliedAfterIncr);
+
+        //Bifunction - 2 param method
+        BiFunction<Integer, Integer, Integer> incrAndMultiply = (addend, multiplier) -> ++addend * multiplier;
+
+        System.out.println(incrAndMultiply.apply(1, 5));
     }
 }
