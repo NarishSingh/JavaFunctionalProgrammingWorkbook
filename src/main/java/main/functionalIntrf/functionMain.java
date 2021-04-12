@@ -1,4 +1,4 @@
-package main.FunctionalIntrf;
+package main.functionalIntrf;
 
 import java.util.function.BiFunction;
 import java.util.function.Function;

@@ -1,4 +1,4 @@
-package main.FunctionalIntrf;
+package main.functionalIntrf;
 
 import java.util.function.BiConsumer;
 import java.util.function.Consumer;

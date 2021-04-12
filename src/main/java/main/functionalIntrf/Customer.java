@@ -1,4 +1,4 @@
-package main.FunctionalIntrf;
+package main.functionalIntrf;
 
 public class Customer {
     private String name;

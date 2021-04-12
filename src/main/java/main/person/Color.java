@@ -1,4 +1,4 @@
-package main.Person;
+package main.person;
 
 public enum Color {
     RED,

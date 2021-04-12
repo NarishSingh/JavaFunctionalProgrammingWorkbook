@@ -1,7 +1,7 @@
 package main.streamsWork;
 
-import main.Person.Color;
-import main.Person.Person;
+import main.person.Color;
+import main.person.Person;
 
 import java.util.List;
 import java.util.stream.Collectors;

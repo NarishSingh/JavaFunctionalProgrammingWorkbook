@@ -1,10 +1,10 @@
-package main.Person;
+package main.person;
 
 import java.util.List;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
-import static main.Person.Color.*;
+import static main.person.Color.*;
 
 public class personMain {
     public static void main(String[] args) {
