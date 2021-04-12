@@ -18,7 +18,7 @@ public class consumerMain {
 
         thanks.accept(new Customer("Luke", "111-111-1111"));
 
-        //Biconsumer = a 2 param function that returns void
+        //BiConsumer = a 2 param function that returns void
         BiConsumer<Customer, Boolean> thankDisplayNumber = (c, show) -> System.out.println("Hello " + c.getName()
                 + ", thanks for registering phone number " + (show ? c.getPhoneNum() : "***-***-****"));
 
