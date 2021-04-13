@@ -6,7 +6,7 @@ import main.person.Person;
 import java.util.Comparator;
 import java.util.List;
 import java.util.Map;
-import java.util.Optional;
+import java.util.function.Function;
 import java.util.stream.Collectors;
 
 public class streamsMain {
@@ -33,7 +33,7 @@ public class streamsMain {
                 new Person("Lucina", 81, Color.ORANGE)
         );
 
-        /*MAPPERS*/
+        /*MAPPERS - let you adjust the stream's T*/
         //distinct set of colors favorited
         System.out.println("Set of all colors from results:");
         people.stream()
@@ -53,17 +53,17 @@ public class streamsMain {
         System.out.println("-------");
 
         /*MATCH*/
-        System.out.println("Does the group only like red?:");
+        System.out.print("Does the group only like red?:");
         boolean onlyRedLovers = people.stream()
                 .allMatch(person -> Color.RED.equals(person.getFaveColor()));
         System.out.println(onlyRedLovers);
 
-        System.out.println("\nDoes anyone like red in the group?:");
+        System.out.print("\nDoes anyone like red in the group?:");
         boolean anyRedLovers = people.stream()
                 .anyMatch(person -> Color.RED.equals(person.getFaveColor()));
         System.out.println(anyRedLovers);
 
-        System.out.println("\nDoes no one like indigo?:");
+        System.out.print("\nDoes no one like indigo?:");
         boolean noIndigoLovers = people.stream()
                 .noneMatch(person -> Color.INDIGO.equals(person.getFaveColor()));
         System.out.println(noIndigoLovers);
@@ -91,6 +91,7 @@ public class streamsMain {
                 .sorted(Comparator.comparing(Person::getName).reversed())
                 .forEach(System.out::println);
 
+        //chained sorting
         System.out.println("\nSort by name then color:");
         people.stream()
                 .sorted(Comparator.comparing(Person::getFaveColor).thenComparing(Person::getFaveColor))
@@ -108,7 +109,7 @@ public class streamsMain {
             peopleList.forEach(System.out::println);
         });
 
-        System.out.println("Count of people with this favorite colors?:");
+        System.out.println("Count of people with this favorite colors:");
         people.stream()
                 .collect(Collectors.groupingBy(Person::getFaveColor))
                 .forEach((color, faveList) -> {
@@ -116,7 +117,7 @@ public class streamsMain {
                     System.out.println(faveList.size());
                 });
 
-        System.out.println("Votes per color?:");
+        System.out.println("Votes per color:");
         people.stream()
                 .collect(Collectors.groupingBy(Person::getFaveColor))
                 .forEach((color, faveList) -> System.out.println(color + " - " + faveList.size()));
@@ -124,7 +125,7 @@ public class streamsMain {
         System.out.println("-------");
 
         /*MIN/MAX*/
-        //min and max returns an optional
+        //min and max returns an optional -> must use .ifPresent and related methods
         System.out.print("Oldest person?: ");
         people.stream()
                 .max(Comparator.comparing(Person::getAge))
@@ -144,5 +145,38 @@ public class streamsMain {
                 .max(Comparator.comparing(Person::getAge))
                 .map(Person::getName)
                 .ifPresent(System.out::println);
+
+        System.out.print("\nMost beloved color: ");
+        Map<Color, Long> voteMap = people.stream()
+                .collect(Collectors.groupingBy(Person::getFaveColor, Collectors.counting())); //counts the elements of group
+        voteMap.entrySet().stream() //open new stream of the entry set
+                .max(Map.Entry.comparingByValue()) //compare by value then get max
+                .ifPresent(System.out::println);
+
+        System.out.print("\nLeast liked color: ");
+        people.stream()
+                .collect(Collectors.groupingBy(Person::getFaveColor, Collectors.counting()))
+                .entrySet().stream()
+                .min(Map.Entry.comparingByValue())
+                .ifPresent(System.out::println);
+
+
+        System.out.println("\nColors that got over 3 votes:");
+        people.stream()
+                .collect(Collectors.groupingBy(Person::getFaveColor))
+                .forEach((color, peopleList) -> {
+                    if (peopleList.size() >= 3) {
+                        System.out.println(color + " - " + peopleList.size());
+                    }
+                });
+
+        System.out.println("\nColors with less than 2 votes");
+        people.stream()
+                .collect(Collectors.groupingBy(Person::getFaveColor))
+                .forEach((color, peopleList) -> {
+                    if (peopleList.size() <= 2) {
+                        System.out.println(color + " - " + peopleList.size());
+                    }
+                });
     }
 }
