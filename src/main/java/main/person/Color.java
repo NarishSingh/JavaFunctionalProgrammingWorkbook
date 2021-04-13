@@ -7,5 +7,11 @@ public enum Color {
     GREEN,
     BLUE,
     INDIGO,
-    VIOLET
+    VIOLET,
+    //more added for Car.java
+    BLACK,
+    WHITE,
+    GRAY,
+    BEIGE,
+
 }

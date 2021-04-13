@@ -6,7 +6,6 @@ import main.person.Person;
 import java.util.Comparator;
 import java.util.List;
 import java.util.Map;
-import java.util.function.Function;
 import java.util.stream.Collectors;
 
 public class streamsMain {
@@ -146,6 +145,7 @@ public class streamsMain {
                 .map(Person::getName)
                 .ifPresent(System.out::println);
 
+        //frequency work
         System.out.print("\nMost beloved color: ");
         Map<Color, Long> voteMap = people.stream()
                 .collect(Collectors.groupingBy(Person::getFaveColor, Collectors.counting())); //counts the elements of group
@@ -161,6 +161,7 @@ public class streamsMain {
                 .ifPresent(System.out::println);
 
 
+        //filtering with .forEach
         System.out.println("\nColors that got over 3 votes:");
         people.stream()
                 .collect(Collectors.groupingBy(Person::getFaveColor))
