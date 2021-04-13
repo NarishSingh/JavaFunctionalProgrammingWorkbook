@@ -6,18 +6,19 @@ import java.util.stream.Collectors;
 
 import static main.person.Color.*;
 
+
 public class personMain {
     public static void main(String[] args) {
         //initializes a List
         List<Person> people = List.of(
-                new Person("Bobby", Color.GREEN),
-                new Person("Johnny", Color.YELLOW),
-                new Person("Carmilla", RED),
-                new Person("Felicia", RED),
-                new Person("Alexa", Color.BLUE),
-                new Person("Wayne", Color.VIOLET),
-                new Person("Tim", Color.INDIGO),
-                new Person("Samantha", Color.ORANGE)
+                new Person("Bobby", 18, GREEN),
+                new Person("Johnny", 18, YELLOW),
+                new Person("Carmilla", 18, RED),
+                new Person("Felicia", 18, RED),
+                new Person("Alexa", 18, BLUE),
+                new Person("Wayne", 18, VIOLET),
+                new Person("Tim", 18, INDIGO),
+                new Person("Samantha", 18, ORANGE)
         );
 
         //imperative
