@@ -8,20 +8,20 @@ import java.util.Objects;
 public class Car {
     private String make; //== brand, like Toyota
     private String model;
-    private LocalDate year; //will use XXXX-01-01, only year is important
+    private LocalDate modelYear; //will use XXXX-01-01, only year is important
     private Color color;
     private Transmission transmission;
     private Drive driveType;
     private double horsepower;
     private double accelTime; //0-60 mph time in s
     private double topSpeed;
-    private double price;
+    private double price; //USD
 
     public Car(String make, String model, LocalDate year, Color color, Transmission transmission, Drive driveType,
                double horsepower, double accelTime, double topSpeed, double price) {
         this.make = make;
         this.model = model;
-        this.year = year;
+        this.modelYear = year;
         this.color = color;
         this.transmission = transmission;
         this.driveType = driveType;
@@ -47,12 +47,12 @@ public class Car {
         this.model = model;
     }
 
-    public LocalDate getYear() {
-        return year;
+    public LocalDate getModelYear() {
+        return modelYear;
     }
 
-    public void setYear(LocalDate year) {
-        this.year = year;
+    public void setModelYear(LocalDate modelYear) {
+        this.modelYear = modelYear;
     }
 
     public Color getColor() {
@@ -116,12 +116,16 @@ public class Car {
         if (this == o) return true;
         if (!(o instanceof Car)) return false;
         Car car = (Car) o;
-        return Double.compare(car.getHorsepower(), getHorsepower()) == 0 && Double.compare(car.getAccelTime(), getAccelTime()) == 0 && Double.compare(car.getTopSpeed(), getTopSpeed()) == 0 && Double.compare(car.getPrice(), getPrice()) == 0 && Objects.equals(getMake(), car.getMake()) && Objects.equals(getModel(), car.getModel()) && Objects.equals(getYear(), car.getYear()) && getColor() == car.getColor();
+        return Double.compare(car.getHorsepower(), getHorsepower()) == 0 && Double.compare(car.getAccelTime(), getAccelTime()) == 0
+                && Double.compare(car.getTopSpeed(), getTopSpeed()) == 0 && Double.compare(car.getPrice(), getPrice()) == 0
+                && Objects.equals(getMake(), car.getMake()) && Objects.equals(getModel(), car.getModel())
+                && Objects.equals(getModelYear(), car.getModelYear()) && getColor() == car.getColor();
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(getMake(), getModel(), getYear(), getColor(), getHorsepower(), getAccelTime(), getTopSpeed(), getPrice());
+        return Objects.hash(getMake(), getModel(), getModelYear(), getColor(), getHorsepower(), getAccelTime(), getTopSpeed(),
+                getPrice());
     }
 
     @Override
@@ -129,7 +133,7 @@ public class Car {
         return "Car{" +
                 "make='" + make + '\'' +
                 ", model='" + model + '\'' +
-                ", year=" + year +
+                ", modelYear=" + modelYear +
                 ", color=" + color +
                 ", horsepower=" + horsepower +
                 ", accelTime=" + accelTime +
